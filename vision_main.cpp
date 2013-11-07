@@ -39,7 +39,8 @@ int main(int argc, char *argv[])
   // create the distortion array, assume no tangential distortion,
   // and lens:
   double distortionParameters[] = {-0.18957, 0.03732, 0.0, 0.0, -0.003367};
-  CvMat distortionMat = cvMat(1,5,CV_32FC1, distortionParameters);
+  double identityDistortionParameters[] = {0.0, 0.0, 0.0, 0.0, 0.0};
+  CvMat distortionMat = cvMat(1,5,CV_32FC1, identityDistortionParameters);
 
   // creat output image
   CvMat* output = cvCreateMat(height, width, CV_8UC3);
@@ -66,8 +67,8 @@ int main(int argc, char *argv[])
   // release the image
   cvReleaseMat(&img);
   cvReleaseMat(&output);
-  cvReleaseMat(&distortionMat);
-  cvReleaseMat(&cameraMat);
+  //cvReleaseMat(distortionMat);
+  //cvReleaseMat(cameraMat);
   
   return 0;
 }
